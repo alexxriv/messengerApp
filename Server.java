@@ -58,7 +58,7 @@ public class Server extends JFrame{
                     setupStreams();
                     whileChatting();
                 }catch(EOFException eofException){
-                    showMessage("\n Server ended the connection")
+                    showMessage("\n Server ended the connection");
                 }finally{
                     closeWindow();
                 }
@@ -124,6 +124,25 @@ public class Server extends JFrame{
         }
     }
 
+    //updates chatWindow
+    private void showMessage(final String text){
+        SwingUtilities.invokeLater(
+            new Runnable(){
+                public void run(){
+                    chatWindow.append(text);
+                }
+            }
+        );         
+    }
 
-
+    //let the user type stuff into their box
+    private void abletoType(final boolean tof){
+        SwingUtilities.invokeLater(
+            new Runnable(){
+                public void run(){
+                    userText.setEditable(tof);
+                }
+            }
+        );
+    }
 }
